@@ -1,0 +1,68 @@
+.mainContainer {
+  position: relative;
+  background-color: rgb(227, 229, 231);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: grey;
+}
+
+.mainContent {
+  background-color: #fff;
+  width: 70%;
+  padding: 25px 25px 50px 25px;
+  border-radius: 3px;
+  margin: 120px 0 150px 0;
+}
+
+.clickBtnDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.clickBtn {
+  padding: 15px 20px;
+  font-size: 20px;
+  border-radius: 5px;
+  border: none;
+  color: grey;
+  background-color: rgba(211, 168, 175, 0.527);
+  box-shadow: 0px 10px 15px rgba(128, 128, 128, .4);
+  font-weight: 600;
+  margin-top: 50px;
+  cursor: pointer;
+  background-image: none;
+}
+
+.clickBtn:hover {
+  background-color: rgba(211, 168, 175, 0.627);
+  color: rgba(128, 128, 128, 0.5);
+
+}
+
+.primaryPara {
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 15px;
+}
+
+.chatSupportDiv {
+  outline: 1px solid rgba(128, 128, 128, 0.15);
+  border-radius: 5px;
+  padding: 30px 0 10px 0;
+  text-align: center;
+  margin-top: 40px;
+  text-decoration: underline;
+  box-shadow: 0px 10px 15px rgba(128, 128, 128, .1);
+}
+
+.chatSupportLink {
+  font-weight: 700;
+  color: rgb(185, 81, 81);
+  cursor: pointer;
+}

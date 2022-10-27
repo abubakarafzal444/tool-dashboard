@@ -1,0 +1,17 @@
+.loginHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #181818a6;
+  padding: 16px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.logoName {
+  margin-left: 5px;
+  color: rgb(206, 195, 195);
+  font-size: 25px;
+  font-weight: 500;
+}

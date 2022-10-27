@@ -1,0 +1,17 @@
+.linksBar {
+  box-shadow: 5px 10px 20px rgb(227, 229, 231);
+  border: 1px solid rgb(197, 186, 186);
+  border-radius: 5px;
+  padding: 7px 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+
+
+.links {
+  padding: 7px 10px;
+  border-right: 1px solid rgb(197, 186, 186);
+}
