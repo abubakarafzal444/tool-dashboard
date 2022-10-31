@@ -2,7 +2,7 @@ import axios from "axios";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar/Navbar";
 import { auth } from "../config/firebase";
 import { AuthContext } from "../context/auth-context";
 import styles from "../styles/Home.module.css";
@@ -13,10 +13,13 @@ export default function Home() {
   const AuthCTX = useContext(AuthContext);
   const router = useRouter();
 
-  const fetchCookies = async () => {
+  const fetchCookies = async (uid) => {
     if (!cookies) {
       try {
-        const result = await axios.get("api/cookies/canva");
+        const result = await axios.post("api/cookies", {
+          siteName: "canva",
+          userId: uid,
+        });
         setCookies(result.data.obj);
         setLoading(false);
       } catch (e) {
@@ -32,7 +35,7 @@ export default function Home() {
         setCookies("");
         router.push("/login");
       } else {
-        fetchCookies();
+        fetchCookies(user.uid);
       }
     });
   }, []);

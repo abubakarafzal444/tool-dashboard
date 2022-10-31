@@ -11,7 +11,7 @@ import {
 import { auth } from "../config/firebase";
 import { AuthContext } from "../context/auth-context";
 import { useRouter } from "next/router";
-
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -30,16 +30,30 @@ const Login = () => {
       await setPersistence(auth, browserSessionPersistence);
       const userData = await signInWithEmailAndPassword(auth, email, password);
       console.log(userData.user.uid);
-      AuthCTX.setToken(userData.user.uid);
+      const result = await axios.post("api/login", {
+        userId: userData.user.uid,
+      });
+      AuthCTX.setUserId(userData.user.uid);
     } catch (e) {
       console.log(e);
     }
   };
+  // const submitHandler = async () => {
+  //   try {
+  //     const result = await axios.post('api/signup', { displayName, email, password });
+  //     console.log(result.data)
+  //   } catch (e) { }
+  // };
   return (
     <div className={styles.mainDisplay}>
       <Header />
       <div className={styles.loginWrapper}>
-        <h1 className={styles.loginHeading} onClick={() => console.log(AuthCTX.token)}>Login</h1>
+        <h1
+          className={styles.loginHeading}
+          onClick={() => console.log(AuthCTX.token)}
+        >
+          Login
+        </h1>
         <div className={styles.username}>
           <label>Username</label>
           <input
@@ -61,17 +75,22 @@ const Login = () => {
           />
         </div>
         <div>
-          <button className={styles.LoginBtn} onClick={loginHandler}><b>Login</b></button>
-          <span className={styles.forgetPass}><a src="#123">forgot pasward?</a> </span>
+          <button className={styles.LoginBtn} onClick={loginHandler}>
+            <b>Login</b>
+          </button>
+          <span className={styles.forgetPass}>
+            <a src="#123">forgot pasward?</a>{" "}
+          </span>
         </div>
-
       </div>
       <div>
-        Not Registered yet? <span className={styles.forgetPass}><a>Signup here</a></span>
+        Not Registered yet?{" "}
+        <span className={styles.forgetPass}>
+          <a>Signup here</a>
+        </span>
       </div>
       <Footer />
     </div>
-
   );
 };
 

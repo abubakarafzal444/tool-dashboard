@@ -10,9 +10,9 @@ const AuthController = (props) => {
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      authCTX.setToken(user.uid);
+      authCTX.setUserId(user.uid);
     } else {
-      authCTX.setToken("");
+      authCTX.setUserId("");
     }
   });
 

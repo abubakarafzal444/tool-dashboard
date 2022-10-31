@@ -1,14 +1,14 @@
 import { createContext, useContext, useState } from "react";
 
-const AuthContext = createContext({ token: "", setToken: () => {} });
+const AuthContext = createContext({ userId: "", setUserId: () => {} });
 const { Provider } = AuthContext;
 
 const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState("");
+  const [userId, setUserId] = useState("");
 
   const obj = {
-    token,
-    setToken: (val) => setToken(val),
+    userId,
+    setUserId: (val) => setUserId(val),
   };
 
   return <Provider value={obj}>{children}</Provider>;

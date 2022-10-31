@@ -7,7 +7,7 @@ const Navbar = () => {
 
   const logoutHandler = async () => {
     await auth.signOut();
-    AuthCTX.setToken("");
+    AuthCTX.setUserId("");
   };
   return (
     <div style={{ display: "flex" }}>
@@ -19,10 +19,12 @@ const Navbar = () => {
           border: "none",
           marginLeft: "15px",
           textDecoration: "underline",
-          cursor: "pointer"
+          cursor: "pointer",
         }}
-
-        onClick={logoutHandler}>Logout</button>
+        onClick={logoutHandler}
+      >
+        Logout
+      </button>
     </div>
   );
 };

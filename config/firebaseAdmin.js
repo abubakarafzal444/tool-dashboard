@@ -1,6 +1,6 @@
-import admin from 'firebase-admin'
+import admin from "firebase-admin";
 
- const firebaseAdminConfig = {
+const firebaseAdminConfig = {
   type: "service_account",
   project_id: "cookie-tool-5daf8",
   private_key_id: "515e52e7d9368b100c73614ec1a5a91cf22bab03",
@@ -16,17 +16,16 @@ import admin from 'firebase-admin'
     "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-kh9rx%40cookie-tool-5daf8.iam.gserviceaccount.com",
 };
 
-
 try {
   admin.initializeApp({
     credential: admin.credential.cert(firebaseAdminConfig),
-  })
-  console.log('Initialized.')
+  });
+  console.log("Initialized.");
 } catch (error) {
-
   if (!/already exists/u.test(error.message)) {
-    console.error('Firebase admin initialization error', error.stack)
+    console.error("Firebase admin initialization error", error.stack);
   }
 }
 
-export default admin
+export default admin;
+export const db = admin.firestore();

@@ -7,13 +7,17 @@ import axios from "axios";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [displayName, setName] = useState("")
+  const [displayName, setName] = useState("");
 
   const submitHandler = async () => {
     try {
-      const result = await axios.post('api/signup', { displayName, email, password });
-      console.log(result.data)
-    } catch (e) { }
+      const result = await axios.post("api/signup", {
+        displayName,
+        email,
+        password,
+      });
+      console.log(result.data);
+    } catch (e) {}
   };
   return (
     <div className={styles.mainSignupDiv}>
@@ -51,12 +55,12 @@ const Signup = () => {
           />
         </div>
 
-        <button
-          className={styles.signupBtn} onClick={submitHandler}>signup</button>
+        <button className={styles.signupBtn} onClick={submitHandler}>
+          signup
+        </button>
       </div>
       <Footer />
     </div>
-
   );
 };
 
