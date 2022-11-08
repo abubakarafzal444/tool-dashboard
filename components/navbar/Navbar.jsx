@@ -1,14 +1,31 @@
-import React, { useContext } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { useRouter } from "next/router";
+import React, { useContext, useEffect } from "react";
 import { auth } from "../../config/firebase";
-import { AuthContext } from "../../context/auth-context";
 
 const Navbar = () => {
-  const AuthCTX = useContext(AuthContext);
+  const router = useRouter();
 
   const logoutHandler = async () => {
     await auth.signOut();
-    AuthCTX.setUserId("");
+    router.push("/login");
   };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      auth.signOut().then((res) => {
+        router.push("/login");
+      });
+    }, 300000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        router.push("/login");
+      }
+    });
+  }, []);
   return (
     <div style={{ display: "flex" }}>
       <h5>Logo here</h5>

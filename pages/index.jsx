@@ -3,9 +3,10 @@ import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import Navbar from "../components/navbar/Navbar";
 import LinksBar from "../components/linksbar/LinksBar";
+import Link from "next/link";
 
 
-const detailList = () => {
+const ToolsList = () => {
   return (
     <div className={styles.detailDiv}>
       <Header />
@@ -34,6 +35,9 @@ const detailList = () => {
           </div>
           <div>
             <div className={styles.subscriptionHeading}>Active Resources </div>
+           <Link href='./access-tool/canva'><p>canva</p></Link>
+           <Link  href='./access-tool/udemy'><p>udemy</p></Link>
+
           </div>
           <div className={styles.ImportantPoints}>
             <div className={styles.subscriptionHeading}>Important Notes </div>
@@ -49,4 +53,4 @@ const detailList = () => {
     </div>
   )
 }
-export default detailList;
+export default ToolsList;

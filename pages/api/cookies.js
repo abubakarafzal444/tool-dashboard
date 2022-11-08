@@ -6,18 +6,16 @@ export default async function cookieSender(req, res) {
   try {
     const userDoc = await db.collection("users").doc(userId).get();
     const user = userDoc.data();
-    if (!user.lastLoggedIn + 300000 > new Date().getTime()) {
-      const err = new Error({
-        status: 401,
-        message: "You ned to login again to access this resource",
-      });
+    if (user.lastLoggedIn + 300000 < new Date().getTime()) {
+      const err = new Error("You ned to login again to access this resource");
+      err.status= 401;
       throw err;
     }
-
+console.log("check pased",user.lastLoggedIn + 300000 ,"......", new Date().getTime())
     const snapshot = await db.collection("cookies").doc("canva").get();
     const canvaCookies = snapshot.data();
     const cookiesObj = JSON.parse(canvaCookies.cookies);
-    // console.log(cookiesObj.cookies)
+     console.log(cookiesObj.cookies)
     const obj = JSON.stringify({
       cookies: cookiesObj.cookies,
       siteName: "https://www.canva.com/",

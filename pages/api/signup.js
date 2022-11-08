@@ -1,4 +1,4 @@
-import { db } from "../../config/firebaseAdmin";
+import admin, { db } from "../../config/firebaseAdmin";
 
 export default async function Signup(req, res) {
   const { displayName, password, email } = req.body;
@@ -7,7 +7,7 @@ export default async function Signup(req, res) {
       email,
       password,
       displayName,
-      disabled: false,
+      disabled: true,
     });
     //TODO: change disable property.
     console.log("user", user.uid);

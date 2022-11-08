@@ -9,15 +9,14 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../config/firebase";
-import { AuthContext } from "../context/auth-context";
 import { useRouter } from "next/router";
 import axios from "axios";
+import Link from "next/link";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
-  const AuthCTX = useContext(AuthContext);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -29,13 +28,16 @@ const Login = () => {
     try {
       await setPersistence(auth, browserSessionPersistence);
       const userData = await signInWithEmailAndPassword(auth, email, password);
-      console.log(userData.user.uid);
+      console.log("result", userData);
       const result = await axios.post("api/login", {
         userId: userData.user.uid,
       });
-      AuthCTX.setUserId(userData.user.uid);
     } catch (e) {
-      console.log(e);
+      if (e.code == "auth/user-disabled") {
+        alert(
+          "Your account is under preview. Please wait for it to be active and login later. Thanks!"
+        );
+      }
     }
   };
   // const submitHandler = async () => {
@@ -48,12 +50,7 @@ const Login = () => {
     <div className={styles.mainDisplay}>
       <Header />
       <div className={styles.loginWrapper}>
-        <h1
-          className={styles.loginHeading}
-          onClick={() => console.log(AuthCTX.token)}
-        >
-          Login
-        </h1>
+        <h1 className={styles.loginHeading}>Login</h1>
         <div className={styles.username}>
           <label>Username</label>
           <input
@@ -86,7 +83,7 @@ const Login = () => {
       <div>
         Not Registered yet?{" "}
         <span className={styles.forgetPass}>
-          <a>Signup here</a>
+          <Link href="/signup">Signup here</Link>
         </span>
       </div>
       <Footer />
